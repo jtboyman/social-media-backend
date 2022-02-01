@@ -98,9 +98,10 @@ const thoughtController = {
 
     //delete remove a reaction from a thought
     deleteReaction({ params }, res) {
+        console.log(params)
         Thought.findOneAndUpdate(
           { _id: params.thoughtId },
-          { $pull: { reactions: { reactionId: params.reactionId } } }, //confusing
+          { $pull: { reactions: {_id: params.reactionId } } }, //confusing
           { new: true }
         )
           .then(dbThoughtData => res.json(dbThoughtData))
